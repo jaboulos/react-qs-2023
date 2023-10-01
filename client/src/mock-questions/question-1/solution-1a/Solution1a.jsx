@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { prompt1text } from '../prompt-text-1';
 import axios from 'axios';
 
@@ -23,20 +24,20 @@ export const Solution1a = () => {
 
   // add tasks to the UI after clicking add button
   const addTask = () => {
-  // validation check, make sure the next text has content in the input
-  if (newTaskTitle) {
-    // make post request
-    axios
-      .post('https://jsonplaceholder.typicode.com/todos', {
-        title: newTaskTitle,
-        completed: false,
-      })
-      // then take the response and set it to the state
-      .then((res) => setTasks([...tasks, res.data]))
-      .catch((error) => console.error('Error occurred ==> ', error));
+    // validation check, make sure the next text has content in the input
+    if (newTaskTitle) {
+      // make post request
+      axios
+        .post('https://jsonplaceholder.typicode.com/todos', {
+          title: newTaskTitle,
+          completed: false,
+        })
+        // then take the response and set it to the state
+        .then((res) => setTasks([...tasks, res.data]))
+        .catch((error) => console.error('Error occurred ==> ', error));
       // set new task state to empty
-      setNewTaskTitle('')
-  }
+      setNewTaskTitle('');
+    }
   };
 
   // toggle task status on UI (edit a task)
@@ -74,9 +75,17 @@ export const Solution1a = () => {
     setTasks(res.data.slice(0, 5));
   };
 
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate('/');
+  };
+
   return (
     <div>
       <div>
+        <div>
+          <button onClick={goBack}>Back</button>
+        </div>
         <p style={{ display: 'inline-block', marginRight: '10px' }}>
           Problem Description
         </p>
