@@ -39,23 +39,24 @@ export const Solution3 = () => {
     <div className='container'>
       <button onClick={goBack}>Back</button>
       <input
+        className='input'
         placeholder='search...'
         onChange={(e) => setSearchString(e.target.value)}
       />
       {loading ? (
-        <p>LOADING...</p>
+        <p className='p'>LOADING...</p>
       ) : error ? (
-        <p>Error: {error.message}</p>
+        <p className='p'>Error: {error.message}</p>
       ) : data && filteredPosts.length > 0 ? (
-        <ul>
+        <ul className='ul'>
           {filteredPosts.map((item) => (
-            <li key={item.id}>
-              <p>{item.title}</p>
+            <li className='li' key={item.id}>
+              <p className='p'>{item.title}</p>
             </li>
           ))}
         </ul>
       ) : (
-        <p>No Data...</p>
+        <p classNam='p'>No Data...</p>
       )}
     </div>
   );
