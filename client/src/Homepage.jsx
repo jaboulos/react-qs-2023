@@ -5,7 +5,8 @@ export const HomePage = () => {
   return (
     <div>
       <h1>Welcome to problem 1</h1>
-      <Link to="/tasks">Go to Tasks</Link>
+      <Link to="/q1">Go to Question 1</Link>
+      <Link to="/q2">Go to Question 2</Link>
     </div>
   );
 }
