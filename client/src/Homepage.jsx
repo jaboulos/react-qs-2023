@@ -8,6 +8,8 @@ export const HomePage = () => {
       <Link to="/q1">Go to Question 1</Link>
       <Link to="/q2">Go to Question 2</Link>
       <Link to='/q3'>Go to Question 3</Link>
+      <Link to='/q4a'>Go to Question 4a</Link>
+      <Link to='/q4b'>Go to Question 4b</Link>
     </div>
   );
 }

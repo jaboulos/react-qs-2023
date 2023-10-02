@@ -1,4 +1,4 @@
-input {
+.input {
   margin: 20px 0;
   padding: 10px;
   width: 200px;
@@ -6,22 +6,22 @@ input {
   display: block;
 }
 
-ul {
+.ul {
   border: 3px solid #0c8c98;
   width: 50%;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-li {
+.li {
   cursor: pointer;
 }
 
-p {
+.p {
   color: rgb(3, 144, 168);
 }
 
-p:hover {
+.p:hover {
   color: red;
 }
 
