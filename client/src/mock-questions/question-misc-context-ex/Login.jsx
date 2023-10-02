@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { LoginContext } from '../../Contexts/LoginContext';
 
 export const Login = () => {
-  const [username, setUsername] = useState('');
-  const [showProfile, setShowProfile] = useState(false);
+  const { setUsername, setShowProfile, username, password, setPassword } = useContext(LoginContext);
 
   return (
     <>
       <input
-        style={{ display: 'block', marginTop: '10px'}}
+        style={{ display: 'block', marginTop: '10px' }}
         type='text'
         placeholder='username...'
         onChange={(e) => {
@@ -15,14 +15,18 @@ export const Login = () => {
         }}
       />
       <input
-        style={{ display: 'block', marginTop: '10px'}}
+        style={{ display: 'block', marginTop: '10px' }}
         type='text'
         placeholder='password...'
+        onChange={(e) => setPassword(e.target.value)}
       />
-      <button style={{ display: 'block', marginTop: '10px'}} onClick={() => setShowProfile(true)}>
-        Login
+      <button
+        onClick={() => {
+          setShowProfile(username && password);
+        }}
+      >
+        LOGIN
       </button>
-      {showProfile && <h1>{username}</h1>}
     </>
   );
 };
