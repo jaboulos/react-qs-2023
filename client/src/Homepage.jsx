@@ -10,6 +10,7 @@ export const HomePage = () => {
       <Link to='/q3'>Go to Question 3</Link>
       <Link to='/q4a'>Go to Question 4a</Link>
       <Link to='/q4b'>Go to Question 4b</Link>
+      <Link to='/q5'>Go to Question 5</Link>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { Solution2 } from './mock-questions/question-2/solution-2/Solution2';
 import { Solution3 } from './mock-questions/question-3/solution-3/Solution3';
 import { Solution4a } from './mock-questions/question-4/solution-4a/Solution4a';
 import { Solution4b } from './mock-questions/question-4/solution-4b/Solution4b';
+import { Solution5 } from './mock-questions/question-5/solution-5/Solution5';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path='/q3' element={<Solution3 />} />
         <Route path='/q4a' element={<Solution4a />} />
         <Route path='/q4b' element={<Solution4b />} />
+        <Route path='/q5' element={<Solution5 />} />
         <Route path='/' element={<HomePage />} />
       </Routes>
     </Router>
