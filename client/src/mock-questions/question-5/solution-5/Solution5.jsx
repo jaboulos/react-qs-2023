@@ -5,7 +5,9 @@ export const Solution5 = () => {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchString, setSearchString] = useState([]);
+  const [debounceTime, setDebounceTime] = useState(null)
 
+  // fetch data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,10 +22,36 @@ export const Solution5 = () => {
     fetchData();
   }, []);
 
+  // filter data
+  useEffect(() => {
+    const lowerCaseSearchString = searchString.toLowerCase()
+    const newFilteredUsers = filteredUsers.filter((user) => user?.name?.toLowerCase() === lowerCaseSearchString)
+    setFilteredUsers(newFilteredUsers)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchString, users])
+
   const navigate = useNavigate();
   const goBack = () => {
     navigate('/');
   };
+
+  const filterUsers = (e) => {
+    // clear debounce time if exists
+    if(debounceTime) {
+      clearTimeout(debounceTime)
+    }
+
+    // readability
+    const value = e.target.value
+
+    // call function after 500 ms
+    const timeout = setTimeout(() => {
+      setSearchString(value)
+    }, 500)
+
+    console.log('timeout', timeout)
+    setDebounceTime(timeout)
+  }
 
   return (
     <div>
