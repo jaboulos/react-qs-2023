@@ -13,7 +13,6 @@ export const Solution5 = () => {
       try {
         const res = await fetch('https://jsonplaceholder.typicode.com/users');
         const data = await res.json();
-        console.log(data);
         setUsers(data);
         setFilteredUsers(data)
       } catch (error) {
@@ -50,7 +49,6 @@ export const Solution5 = () => {
       setSearchString(value)
     }, 300)
 
-    console.log('timeout', timeout)
     setDebounceTime(timeout)
   }
 
@@ -64,8 +62,8 @@ export const Solution5 = () => {
         style={{ display: 'block', marginTop: '15px' }}
       />
       <ul>
-        {filteredUsers.map((user) => (
-          <li key={filteredUsers.id}>{user.name}</li>
+        {filteredUsers.map((filteredUser) => (
+          <li key={filteredUser.id}>{filteredUser.name}</li>
         ))}
       </ul>
     </div>
