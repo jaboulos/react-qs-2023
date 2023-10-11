@@ -182,18 +182,24 @@ export const Solution1a = () => {
   // toggle the task status
   const handleToggleTaskStatus = (id) => {
     // find the task we need to update
-    const foundTask = tasks.find((task) => id === task?.id)
+    const foundTask = tasks.find((task) => id === task?.id);
     // after finding the task, toggle its completed value
     const updatedTaskStatus = foundTask?.completed ? false : true;
     axios
-      .put('https://jsonplaceholder.typicode.com/todos', {
+      .put(`https://jsonplaceholder.typicode.com/todos/${id}`, {
         ...foundTask,
-        completed: updatedTaskStatus
-    })
-    // now update the task list
-      .then((task) => {
-
+        completed: updatedTaskStatus,
       })
+      // now update the task list
+      .then((res) => {
+        // update the task that was toggled
+        const updatedTasks = tasks.map((task) =>
+          task.id === id ? res.data : task
+        );
+        // set the state
+        setTasks(updatedTasks);
+      })
+      .catch((e) => console.error(e));
   };
 
   // set task title state
@@ -221,11 +227,12 @@ export const Solution1a = () => {
             onChange={(e) => handleSetTaskTitle(e)}
           />
         </div>
-        {tasks.map((todo, i) => (
-          <div key={`${todo.id}-${i}`} style={{ margin: '10px' }}>
-            <button>Toggle complete status</button>
+        {tasks.map((task, i) => (
+          <div key={`${task.id}-${i}`} style={{ margin: '10px' }}>
+            <button onClick={() => handleToggleTaskStatus(task.id)}>Toggle complete status</button>
             <li style={{ display: 'inline-block', marginLeft: '10px' }}>
-              {todo.title}
+              <div>{task.title}</div>
+              <div style={{color: 'orange'}}>{task.completed ? 'completed': 'incomplete'}</div>
             </li>
           </div>
         ))}
