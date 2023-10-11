@@ -229,10 +229,14 @@ export const Solution1a = () => {
         </div>
         {tasks.map((task, i) => (
           <div key={`${task.id}-${i}`} style={{ margin: '10px' }}>
-            <button onClick={() => handleToggleTaskStatus(task.id)}>Toggle complete status</button>
+            <button onClick={() => handleToggleTaskStatus(task.id)}>
+              Toggle complete status
+            </button>
             <li style={{ display: 'inline-block', marginLeft: '10px' }}>
               <div>{task.title}</div>
-              <div style={{color: 'orange'}}>{task.completed ? 'completed': 'incomplete'}</div>
+              <div style={{ color: task.completed ? 'green' : 'red' }}>
+                {task.completed ? 'completed' : 'incomplete'}
+              </div>
             </li>
           </div>
         ))}
